@@ -21,6 +21,7 @@ public class MCskin {
 		this.size = size;
 		this.colori = colori;
 		this.matrix = matrix;
+		//nessuna rotazione effettiva (ruota di 0 gradi)
 		this.rotate = new Rotate();
 	}
 
@@ -31,7 +32,9 @@ public class MCskin {
                 this.size = size;
                 this.colori = colori;
                 this.matrix = matrix;
+		//rotazione dall'angolo inserito
                 this.rotate = new Rotate(angle);
+		//il cui centro di rotazione è al centro della skin
 		this.rotate.setPivotX(x + size*4);
 		this.rotate.setPivotY(y + size*4);
         }
@@ -43,6 +46,7 @@ public class MCskin {
                 this.size = size;
                 this.colori = colori;
                 this.matrix = matrix;
+		//per fare altre rotazioni precedentemente settate
                 this.rotate = rotate;
 	}
 
