@@ -1,0 +1,33 @@
+come si compila java
+
+per compilare
+
+javac NOMEFILE.java
+
+per eseguire
+
+java NOMEFILE
+
+per compilare un progetto
+
+scrivere dentro i files
+
+"package NOMEPROGETTO;
+
+...
+"
+
+salvarli tutti nella cartella chiamata
+NOMEPROGETTO
+
+compilarli
+andando in .../NOMEPROGETTO
+con
+
+javac *.java
+
+e eseguirli facendo
+cd ..
+(va nella cartella precedente)
+java NOMEPROGETTO.NOMEFILEMAIN
+

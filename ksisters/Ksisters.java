@@ -9,6 +9,10 @@ import javafx.scene.paint.Color;
 public class Ksisters extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+                //variabili spaziali
+                Double size = 40.;      //dimensione di un pixel
+                Double spazio = 20.;    //dimensione dello spazio tra i bordi e le altre figure
+                Double width = (size*8)*3+4*spazio, height = (size*8)*2+3*spazio;
 		//KIRIAIR
 		Color coloriKIRIAIR[] = {
 			Color.PINK,
@@ -95,10 +99,7 @@ public class Ksisters extends Application {
 			{ 0, 0, 1, 0, 0, 1, 0, 0},
 			{11, 0, 0, 1, 1, 0, 0, 11},
 		};
-		//variabili spaziali
-		Double size = 40.;	//dimensione di un pixel
-		Double spazio = 20.;	//dimensione dello spazio tra i bordi e le altre figure
-		Double width = (size*8)*3+4*spazio, height = (size*8)*2+3*spazio;
+		//altre variabili spaziali per decidere la posizione reciproca delle figure
 		Double x = width*1/2 - size*4;
 		Double y = height*1/2 - size*4;
 		//Disegno dei soggetti
