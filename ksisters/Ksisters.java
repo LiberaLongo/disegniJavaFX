@@ -11,8 +11,9 @@ public class Ksisters extends Application {
 	public void start(Stage primaryStage) throws Exception {
                 //variabili spaziali
                 Double size = 40.;      //dimensione di un pixel
-                Double spazio = 20.;    //dimensione dello spazio tra i bordi e le altre figure
-                Double width = (size*8)*3+4*spazio, height = (size*8)*2+3*spazio;
+                Double spazioX = 85.;   //spazio lungo l'orizzontale ---
+		Double spazioY = 22.;	//spazio lungo la verticale |
+                Double width = (size*8)*3+4*spazioX, height = (size*8)*2+3*spazioY;
 		//KIRIAIR
 		Color coloriKIRIAIR[] = {
 			Color.PINK,
@@ -104,10 +105,10 @@ public class Ksisters extends Application {
 		Double y = height*1/2 - size*4;
 		//Disegno dei soggetti
 		Group root = new Group();
-		MCskin KIRIAIR = new MCskin(x, height-size*8-spazio, size, coloriKIRIAIR, matrixKIRIAIR);
-		MCskin KoMaKi_ = new MCskin(width-size*8-spazio, y, size, coloriKoMaKi_, matrixKoMaKi_);
-		MCskin KiraLushia = new MCskin(spazio, y, size, coloriKiraLushia, matrixKiraLushia);
-		MCskin LLibera = new MCskin(x, spazio, size, coloriLLibera, matrixLLibera);
+		MCskin KIRIAIR = new MCskin(x, height-size*8-spazioY, size, coloriKIRIAIR, matrixKIRIAIR);
+		MCskin KoMaKi_ = new MCskin(width-size*8-spazioX, y, size, coloriKoMaKi_, matrixKoMaKi_);
+		MCskin KiraLushia = new MCskin(spazioX, y, size, coloriKiraLushia, matrixKiraLushia);
+		MCskin LLibera = new MCskin(x, spazioY, size, coloriLLibera, matrixLLibera);
 		root = LLibera.draw(root);
 		root = KoMaKi_.draw(root);
 		root = KiraLushia.draw(root);
