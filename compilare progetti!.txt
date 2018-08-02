@@ -31,3 +31,13 @@ cd ..
 (va nella cartella precedente)
 java NOMEPROGETTO.NOMEFILEMAIN
 
+per modificare il file
+
+nano NOMEFILE.java
+
+o per non dover cambiare tutte le volte la cartella
+basta fare (operativamente)
+
+nano NOMEPROGETTO/NOMEFILE.java
+javac NOMEPROGETTO/*.java
+java NOMEPROGETTO.NOMEFILEMAIN
