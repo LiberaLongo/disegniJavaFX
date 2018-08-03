@@ -11,10 +11,13 @@ public class rotatedKsisters extends Application {
 	public void start(Stage primaryStage) throws Exception {
                 //variabili spaziali
                 Double size = 40.;      //dimensione di un pixel
-                Double spazioX = 85.;   //spazio lungo l'orizzontale ---
-		Double spazioY = 22.;	//spazio lungo la verticale |
-		Double angle = -20.;
-                Double width = (size*8)*3+4*spazioX, height = (size*8)*2+3*spazioY;
+		Double space = 20.;	//spazietto
+                Double spazioX = size*8+space;		//spazio lungo l'orizzontale ---
+		Double spazioY = size*4+space;		//spazio lungo la verticale |
+                Double width = (size*4)*2+spazioX*2+space*2;
+		Double height = (size*4)*2+spazioY*2+space*2;
+		//angolo in cui sono ruotate le figure
+		Double angle = 20.;
 		//KIRIAIR
 		Color coloriKIRIAIR[] = {
 			Color.PINK,
@@ -101,15 +104,15 @@ public class rotatedKsisters extends Application {
 			{ 0, 0, 1, 0, 0, 1, 0, 0},
 			{11, 0, 0, 1, 1, 0, 0, 11},
 		};
-		//altre variabili spaziali per decidere la posizione reciproca delle figure
-		Double x = width*1/2 - size*4;
-		Double y = height*1/2 - size*4;
+		//centro della finestra
+		Double x = width*1/2;
+		Double y = height*1/2;
 		//Disegno dei soggetti
 		Group root = new Group();
-		MCskin KIRIAIR = new MCskin(x, height-size*8-spazioY, size, coloriKIRIAIR, matrixKIRIAIR, angle);
-		MCskin KoMaKi_ = new MCskin(width-size*8-spazioX, y, size, coloriKoMaKi_, matrixKoMaKi_, angle);
-		MCskin KiraLushia = new MCskin(spazioX, y, size, coloriKiraLushia, matrixKiraLushia, angle);
-		MCskin LLibera = new MCskin(x, spazioY, size, coloriLLibera, matrixLLibera, angle);
+		MCskin KIRIAIR 		= new MCskin(x, y+spazioY, size, coloriKIRIAIR, matrixKIRIAIR, angle);
+		MCskin KoMaKi_ 		= new MCskin(x+spazioX, y, size, coloriKoMaKi_, matrixKoMaKi_, angle);
+		MCskin KiraLushia 	= new MCskin(x-spazioX, y, size, coloriKiraLushia, matrixKiraLushia, angle);
+		MCskin LLibera 		= new MCskin(x, y-spazioY, size, coloriLLibera, matrixLLibera, angle);
 		root = LLibera.draw(root);
 		root = KoMaKi_.draw(root);
 		root = KiraLushia.draw(root);

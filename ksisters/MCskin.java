@@ -14,35 +14,37 @@ public class MCskin {
 	private Integer matrix[][];
 	private Rotate rotate;
 
-	public MCskin(Double x, Double y, Double size, Color[] colori, Integer[][] matrix) {
+	public MCskin(Double centerX, Double centerY, Double size, Color[] colori, Integer[][] matrix) {
 		super();
-		this.x = x;
-		this.y = y;
+		this.x = centerX - size*4;
+		this.y = centerY - size*4;
 		this.size = size;
 		this.colori = colori;
 		this.matrix = matrix;
 		//nessuna rotazione effettiva (ruota di 0 gradi)
 		this.rotate = new Rotate();
+		this.rotate.setPivotX(centerX);
+		this.rotate.setPivotY(centerY);
 	}
 
-        public MCskin(Double x, Double y, Double size, Color[] colori, Integer[][] matrix, Double angle) {
+        public MCskin(Double centerX, Double centerY, Double size, Color[] colori, Integer[][] matrix, Double angle) {
                 super();
-                this.x = x;
-                this.y = y;
+		this.x = centerX - size*4;
+		this.y = centerY - size*4;
                 this.size = size;
                 this.colori = colori;
                 this.matrix = matrix;
 		//rotazione dall'angolo inserito
                 this.rotate = new Rotate(angle);
 		//il cui centro di rotazione è al centro della skin
-		this.rotate.setPivotX(x + size*4);
-		this.rotate.setPivotY(y + size*4);
+		this.rotate.setPivotX(centerX);
+		this.rotate.setPivotY(centerY);
         }
 
-	public MCskin(Double x, Double y, Double size, Color[] colori, Integer[][] matrix, Rotate rotate) {
+	public MCskin(Double centerX, Double centerY, Double size, Color[] colori, Integer[][] matrix, Rotate rotate) {
                 super();
-                this.x = x;
-                this.y = y;
+		this.x = centerX - size*4;
+		this.y = centerY - size*4;
                 this.size = size;
                 this.colori = colori;
                 this.matrix = matrix;

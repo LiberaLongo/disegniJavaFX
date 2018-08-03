@@ -5,8 +5,11 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
+import static javafx.application.Application.launch;
+import javafx.util.Duration;
+import javafx.animation.RotateTransition;
 
-public class Ksisters extends Application {
+public class giostra extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
                 //variabili spaziali
