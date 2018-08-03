@@ -27,6 +27,8 @@ git pull
 ls
 (per vedere il contenuto della cartella)
 
+cd disegniJavaFX/
+
 una volta fatti questi semplici comandi puoi:
 decidere di voler aprire il file chiamato "NOMEFILE" appartenete al package "NOMEPACCHETTO"
 
@@ -65,3 +67,14 @@ per interi pakage
 javac NOMEPACCHETTO/*.java
 
 java NOMEPACCHETTO.NOMEFILEMAIN
+
+vuoi un esempio concreto?
+supponi di aver già clonato il progetto sulla scrivania
+
+Ctrl+Alt+t
+
+cd Scrivania/disegniJavaFX
+
+javac ksisters/*.java
+
+java ksisters.Ksisters
