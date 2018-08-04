@@ -10,21 +10,13 @@ public class Cuore {
 	private Double x;
 	private Double y;
 	private Double size;
-	private Color paint;
-
+	
 	Cuore() {
 	}
 	Cuore(Double x, Double y, Double size) {
-		this.x = x;
+		this.x = x - size/2;
 		this.y = y;
 		this.size = size;
-		this.paint = Color.RED;
-	}
-	Cuore(Double x, Double y, Double size, Color paint) {
-		this.x = x;
-		this.y = y;
-		this.size = size;
-		this.paint = paint;
 	}
 	public Shape draw() {
 		Circle sinistro = new Circle(this.x-this.size*4/5, this.y, this.size);
@@ -38,14 +30,13 @@ public class Cuore {
 			this.x, this.y+this.size*2
 		});
 		Shape cuore = Shape.union(cerchi, sotto);
-		cuore.setFill(this.paint);
+		cuore.setFill(Color.RED);
 		return cuore;
 	}
 	public Shape draw(Double x, Double y, Double size, Color paint) {
 		this.x = x;
 		this.y = y;
 		this.size = size;
-		this.paint = paint;
 		return this.draw();
 	}
 }
