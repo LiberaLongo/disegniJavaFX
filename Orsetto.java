@@ -16,6 +16,8 @@ public class Orsetto extends Application {
 		Double x = widthScene*1/2, y = heightScene*1/2;
 		//proporzioni fisiche del soggetto
 		//testa
+		Double Xtesta = x;
+		Double Ytesta = y;
 		Double raggioTesta = 200.0;
 		//orecchie esterne
 		Double distanzaOrecchie = raggioTesta*2/3;
@@ -53,41 +55,41 @@ public class Orsetto extends Application {
 		Circle tD = cranio;
 		Circle tS = cranio;
 		//orecchie esterne
-		Circle orecchioSinistro = new Circle(x-distanzaOrecchie, y-altezzaOrecchie, raggioOrecchie);
-		Circle orecchioDestro = new Circle(x+distanzaOrecchie, y-altezzaOrecchie, raggioOrecchie);
+		Circle orecchioSinistro = new Circle(Xtesta-distanzaOrecchie, Ytesta-altezzaOrecchie, raggioOrecchie);
+		Circle orecchioDestro = new Circle(Xtesta+distanzaOrecchie, Ytesta-altezzaOrecchie, raggioOrecchie);
 		Shape orecchie = Shape.union(orecchioSinistro, orecchioDestro);
 		//testa
 		Shape testa = Shape.union(cranio, orecchie);
 		testa.setFill(Color.BLACK);
 		//orecchie interne
 		//preparazione orecchie interne
-		Circle internosinistro = new Circle(x-distanzaOrecchieInterne, y-altezzaOrecchieInterne, raggioOrecchieInterne);
-		Circle internodestro = new Circle(x+distanzaOrecchieInterne, y-altezzaOrecchieInterne, raggioOrecchieInterne);
+		Circle internosinistro = new Circle(x-distanzaOrecchieInterne, Ytesta-altezzaOrecchieInterne, raggioOrecchieInterne);
+		Circle internodestro = new Circle(x+distanzaOrecchieInterne, Ytesta-altezzaOrecchieInterne, raggioOrecchieInterne);
 		Shape orecchioInternoSinistro = Shape.subtract(internosinistro, tS);
 		Shape orecchioInternoDestro = Shape.subtract(internodestro, tD);
 		Shape orecchieInterne = Shape.union(orecchioInternoSinistro, orecchioInternoDestro);
 		orecchieInterne.setFill(Color.SANDYBROWN);
 		//orbite
-		Ellipse orbitaSinistra = new Ellipse(x-distanzaOrbite, y, radiusXOrbite, radiusYOrbite);
-		Ellipse orbitaDestra = new Ellipse(x+distanzaOrbite, y, radiusXOrbite, radiusYOrbite);
+		Ellipse orbitaSinistra = new Ellipse(Xtesta-distanzaOrbite, Ytesta, radiusXOrbite, radiusYOrbite);
+		Ellipse orbitaDestra = new Ellipse(Xtesta+distanzaOrbite, Ytesta, radiusXOrbite, radiusYOrbite);
 		Shape orbite = Shape.union(orbitaSinistra, orbitaDestra);
 		orbite.setFill(Color.SANDYBROWN);
 		//occhi
-		Ellipse occhioSinistro = new Ellipse(x-distanzaOcchi, y, radiusXOcchi, radiusYOcchi);
-		Ellipse occhioDestro = new Ellipse(x+distanzaOcchi, y, radiusXOcchi, radiusYOcchi);
+		Ellipse occhioSinistro = new Ellipse(Xtesta-distanzaOcchi, Ytesta, radiusXOcchi, radiusYOcchi);
+		Ellipse occhioDestro = new Ellipse(Xtesta+distanzaOcchi, Ytesta, radiusXOcchi, radiusYOcchi);
 		Shape occhi = Shape.union(occhioSinistro, occhioDestro);
 		occhi.setFill(Color.WHITE);
 		//pupille
-		Ellipse pupillaSinistra = new Ellipse(x-distanzaPupille, y, radiusXPupille, radiusYPupille);
-		Ellipse pupillaDestra = new Ellipse(x+distanzaPupille, y, radiusXPupille, radiusYPupille);
+		Ellipse pupillaSinistra = new Ellipse(Xtesta-distanzaPupille, Ytesta, radiusXPupille, radiusYPupille);
+		Ellipse pupillaDestra = new Ellipse(Xtesta+distanzaPupille, Ytesta, radiusXPupille, radiusYPupille);
 		Shape pupille = Shape.union(pupillaSinistra, pupillaDestra);
 		pupille.setFill(Color.BLACK);
 		pupille.setStrokeWidth(2);
 		//bocca
-		Ellipse bocca = new Ellipse(x, y+altezzaBocca, radiusXBocca, radiusYBocca);
+		Ellipse bocca = new Ellipse(Xtesta, Ytesta+altezzaBocca, radiusXBocca, radiusYBocca);
 		bocca.setFill(Color.SANDYBROWN);
 		//naso
-		Ellipse naso = new Ellipse(x, y+altezzaNaso, radiusXNaso, radiusYNaso);
+		Ellipse naso = new Ellipse(Xtesta, Ytesta+altezzaNaso, radiusXNaso, radiusYNaso);
 		naso.setFill(Color.BLACK);
 
 		//stampa tutto
