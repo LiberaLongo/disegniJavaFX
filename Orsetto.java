@@ -50,7 +50,7 @@ public class Orsetto extends Application {
 
 		//Disegno del soggetto
 		//cranio
-		Circle cranio = new Circle(x, y, raggioTesta);
+		Circle cranio = new Circle(Xtesta, Ytesta, raggioTesta);
 		//shape per fare orecchie interne
 		Circle tD = cranio;
 		Circle tS = cranio;
@@ -63,8 +63,8 @@ public class Orsetto extends Application {
 		testa.setFill(Color.BLACK);
 		//orecchie interne
 		//preparazione orecchie interne
-		Circle internosinistro = new Circle(x-distanzaOrecchieInterne, Ytesta-altezzaOrecchieInterne, raggioOrecchieInterne);
-		Circle internodestro = new Circle(x+distanzaOrecchieInterne, Ytesta-altezzaOrecchieInterne, raggioOrecchieInterne);
+		Circle internosinistro = new Circle(Xtesta-distanzaOrecchieInterne, Ytesta-altezzaOrecchieInterne, raggioOrecchieInterne);
+		Circle internodestro = new Circle(Xtesta+distanzaOrecchieInterne, Ytesta-altezzaOrecchieInterne, raggioOrecchieInterne);
 		Shape orecchioInternoSinistro = Shape.subtract(internosinistro, tS);
 		Shape orecchioInternoDestro = Shape.subtract(internodestro, tD);
 		Shape orecchieInterne = Shape.union(orecchioInternoSinistro, orecchioInternoDestro);
