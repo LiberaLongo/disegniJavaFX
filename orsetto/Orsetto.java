@@ -1,3 +1,5 @@
+package orsetto;
+
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -8,34 +10,56 @@ import javafx.scene.shape.Shape;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
 
-public class Orsetto extends Application {
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		//colori
-		Color pellechiara = Color.SANDYBROWN;
-		Color pelle = Color.BROWN;
-		//variabili ampiezza schermo
-		Double widthScene = 1000.0, heightScene = 700.0;
-		//variabili coordinate del soggetto
-		Double x = widthScene*1/2, y = heightScene*1/2;
-		//proporzioni fisiche del soggetto
+public class Orsetto {
+	private Double x;
+	private Double y;
+	private Double size;
+	private Color pelle;
+	private Color pellechiara;
+	private Double angle;
 
+	Orsetto(Double x, Double y, Double size) {
+		this.x = x;
+		this.y = y;
+		this.size = size;
+		this.pelle = Color.BROWN;
+		this.pellechiara = Color.SANDYBROWN;
+		this.angle = 20.;
+	}
+
+	Orsetto(Double x, Double y, Double size, Color pelle, Color pellechiara) {
+		this.x = x;
+		this.y = y;
+		this.size = size;
+		this.pelle = pelle;
+		this.pellechiara = pellechiara;
+		this.angle = 20.;
+	}
+
+	Orsetto(Double x, Double y, Double size, Color pelle, Color pellechiara, Double angle) {
+		this.x = x;
+		this.y = y;
+		this.size = size;
+		this.pelle = pelle;
+		this.pellechiara = pellechiara;
+		this.angle = angle;
+	}
+
+	public Group draw(Group root) {
 		//TESTA
-		Double Xtesta = x;
-		Double Ytesta = y-200;
-		Double raggioTesta = 100.0;
+		Double Ytesta = y-size * 2;
 		//orecchie esterne
-		Double distanzaOrecchie = raggioTesta*2/3;
-		Double altezzaOrecchie = raggioTesta*2/3;
-		Double raggioOrecchie = raggioTesta*1/2;
+		Double distanzaOrecchie = size*2/3;
+		Double altezzaOrecchie = size*2/3;
+		Double raggioOrecchie = size*1/2;
 		//orecchie interne
 		Double distanzaOrecchieInterne = distanzaOrecchie;
 		Double altezzaOrecchieInterne = altezzaOrecchie;
 		Double raggioOrecchieInterne = raggioOrecchie*2/3;
 		//orbite
-		Double distanzaOrbite = raggioTesta*1/4;
-		Double radiusXOrbite = raggioTesta*2/5;
-		Double radiusYOrbite = raggioTesta*2/3;
+		Double distanzaOrbite = size*1/4;
+		Double radiusXOrbite = size*2/5;
+		Double radiusYOrbite = size*2/3;
 		//occhi
 		Double distanzaOcchi = distanzaOrbite - distanzaOrbite*1/10;
 		Double radiusXOcchi = radiusXOrbite*1/2;
@@ -45,75 +69,73 @@ public class Orsetto extends Application {
 		Double radiusXPupille = radiusXOcchi*1/2;
 		Double radiusYPupille = radiusYOcchi*1/2;
 		//guance
-		Double altezzaGuance = raggioTesta*2/3;
-		Double radiusXGuance = raggioTesta*2/3;
-		Double radiusYGuance = raggioTesta*1/2;
+		Double altezzaGuance = size*2/3;
+		Double radiusXGuance = size*2/3;
+		Double radiusYGuance = size*1/2;
 		//naso
-		Double altezzaNaso = raggioTesta - radiusYGuance*3/2;
-		Double radiusXNaso = raggioTesta*1/8;
-		Double radiusYNaso = raggioTesta*1/10;
+		Double altezzaNaso = size - radiusYGuance*3/2;
+		Double radiusXNaso = size*1/8;
+		Double radiusYNaso = size*1/10;
 
 		//CORPO
-		Double radiusXCorpo = raggioTesta*2/3;
-		Double radiusYCorpo = raggioTesta*3/2;
+		Double radiusXCorpo = size*2/3;
+		Double radiusYCorpo = size*3/2;
 		//pancia
 		Double radiusXPancia = radiusXCorpo*2/3;
 		Double radiusYPancia = radiusYCorpo*2/3;
 		//braccia
-		Double attaccaturaAltezzaBraccia = raggioTesta*2/3;
-		Double attaccaturaDistanzaBraccia = raggioTesta;
+		Double attaccaturaAltezzaBraccia = size*2/3;
+		Double attaccaturaDistanzaBraccia = size;
 		Double radiusXBraccia = radiusYCorpo;
 		Double radiusYBraccia = radiusXCorpo/2;
-		Double angoloBraccia = 20.;
 		//gambe
 		Double radiusXGambe = radiusXCorpo/2;
 		Double radiusYGambe = radiusYCorpo;
 		Double attaccaturaAltezzaGambe = radiusYCorpo+radiusXGambe;
-		Double attaccaturaDistanzaGambe = raggioTesta/2;
-		Double angoloGambe = 20.;
+		Double attaccaturaDistanzaGambe = size/2;
 
 		//Disegno del soggetto
 		//TESTA
 		//cranio
-		Circle cranio = new Circle(Xtesta, Ytesta, raggioTesta);
+		Circle cranio = new Circle(x, Ytesta, size);
 		//orecchie esterne
-		Circle orecchioSinistro = new Circle(Xtesta - distanzaOrecchie, Ytesta-altezzaOrecchie, raggioOrecchie);
-		Circle orecchioDestro = new Circle(Xtesta + distanzaOrecchie, Ytesta-altezzaOrecchie, raggioOrecchie);
+		Circle orecchioSinistro = new Circle(x - distanzaOrecchie, Ytesta-altezzaOrecchie, raggioOrecchie);
+		Circle orecchioDestro = new Circle(x + distanzaOrecchie, Ytesta-altezzaOrecchie, raggioOrecchie);
 		Shape orecchie = Shape.union(orecchioSinistro, orecchioDestro);
 		//testa
 		Shape testa = Shape.union(cranio, orecchie);
 		testa.setFill(pelle);
 		//orecchie interne
 		//preparazione orecchie interne
-                Circle tD = cranio;
-                Circle tS = cranio;
-		Circle internosinistro = new Circle(Xtesta - distanzaOrecchieInterne, Ytesta-altezzaOrecchieInterne, raggioOrecchieInterne);
-		Circle internodestro = new Circle(Xtesta + distanzaOrecchieInterne, Ytesta-altezzaOrecchieInterne, raggioOrecchieInterne);
+	        Circle tD = cranio;
+	        Circle tS = cranio;
+		Circle internosinistro = new Circle(x - distanzaOrecchieInterne, Ytesta-altezzaOrecchieInterne, raggioOrecchieInterne);
+		Circle internodestro = new Circle(x + distanzaOrecchieInterne, Ytesta-altezzaOrecchieInterne, raggioOrecchieInterne);
 		Shape orecchioInternoSinistro = Shape.subtract(internosinistro, tS);
 		Shape orecchioInternoDestro = Shape.subtract(internodestro, tD);
 		Shape orecchieInterne = Shape.union(orecchioInternoSinistro, orecchioInternoDestro);
 		orecchieInterne.setFill(pellechiara);
 		//orbite
-		Ellipse orbitaSinistra = new Ellipse(Xtesta-distanzaOrbite, Ytesta, radiusXOrbite, radiusYOrbite);
-		Ellipse orbitaDestra = new Ellipse(Xtesta+distanzaOrbite, Ytesta, radiusXOrbite, radiusYOrbite);
+		Ellipse orbitaSinistra = new Ellipse(x-distanzaOrbite, Ytesta, radiusXOrbite, radiusYOrbite);
+		Ellipse orbitaDestra = new Ellipse(x+distanzaOrbite, Ytesta, radiusXOrbite, radiusYOrbite);
 		Shape orbite = Shape.union(orbitaSinistra, orbitaDestra);
 		orbite.setFill(pellechiara);
 		//occhi
-		Ellipse occhioSinistro = new Ellipse(Xtesta - distanzaOcchi, Ytesta, radiusXOcchi, radiusYOcchi);
-		Ellipse occhioDestro = new Ellipse(Xtesta + distanzaOcchi, Ytesta, radiusXOcchi, radiusYOcchi);
+		Ellipse occhioSinistro = new Ellipse(x - distanzaOcchi, Ytesta, radiusXOcchi, radiusYOcchi);
+		Ellipse occhioDestro = new Ellipse(x + distanzaOcchi, Ytesta, radiusXOcchi, radiusYOcchi);
 		Shape occhi = Shape.union(occhioSinistro, occhioDestro);
 		occhi.setFill(Color.WHITE);
 		//pupille
-		Ellipse pupillaSinistra = new Ellipse(Xtesta - distanzaPupille, Ytesta, radiusXPupille, radiusYPupille);
-		Ellipse pupillaDestra = new Ellipse(Xtesta + distanzaPupille, Ytesta, radiusXPupille, radiusYPupille);
+		Ellipse pupillaSinistra = new Ellipse(x - distanzaPupille, Ytesta, radiusXPupille, radiusYPupille);
+		Ellipse pupillaDestra = new Ellipse(x + distanzaPupille, Ytesta, radiusXPupille, radiusYPupille);
 		Shape pupille = Shape.union(pupillaSinistra, pupillaDestra);
 		pupille.setFill(Color.BLACK);
 		pupille.setStrokeWidth(2);
 		//guance
-		Ellipse guance = new Ellipse(Xtesta, Ytesta+altezzaGuance, radiusXGuance, radiusYGuance);
+		Ellipse guance = new Ellipse(x, Ytesta+altezzaGuance, radiusXGuance, radiusYGuance);
 		guance.setFill(pellechiara);
 		//naso
-		Ellipse naso = new Ellipse(Xtesta, Ytesta+altezzaNaso, radiusXNaso, radiusYNaso);
+		Ellipse naso = new Ellipse(x, Ytesta+altezzaNaso, radiusXNaso, radiusYNaso);
 		naso.setFill(pelle);
 
 		//CORPO
@@ -126,14 +148,14 @@ public class Orsetto extends Application {
 			//braccio sinistro
 		Ellipse braccioSinistro = new Ellipse(x - attaccaturaDistanzaBraccia, y-attaccaturaAltezzaBraccia, radiusXBraccia, radiusYBraccia);
 		Rotate rotazioneBraccioSinistro = new Rotate();
-		rotazioneBraccioSinistro.setAngle(-angoloBraccia);
+		rotazioneBraccioSinistro.setAngle(-angle);
 		rotazioneBraccioSinistro.setPivotX(x - attaccaturaDistanzaBraccia);
 		rotazioneBraccioSinistro.setPivotY(y-attaccaturaAltezzaBraccia);
 		braccioSinistro.getTransforms().addAll(rotazioneBraccioSinistro);
-			//braccio destro		
+			//braccio destro
 		Ellipse braccioDestro = new Ellipse(x + attaccaturaDistanzaBraccia, y-attaccaturaAltezzaBraccia, radiusXBraccia, radiusYBraccia);
 		Rotate rotazioneBraccioDestro = new Rotate();
-		rotazioneBraccioDestro.setAngle(angoloBraccia);
+		rotazioneBraccioDestro.setAngle(angle);
 		rotazioneBraccioDestro.setPivotX(x + attaccaturaDistanzaBraccia);
 		rotazioneBraccioDestro.setPivotY(y-attaccaturaAltezzaBraccia);
 		braccioDestro.getTransforms().addAll(rotazioneBraccioDestro);
@@ -144,14 +166,14 @@ public class Orsetto extends Application {
 			//gamba sinistra
 		Ellipse gambaSinistra = new Ellipse(x - attaccaturaDistanzaGambe, y+attaccaturaAltezzaGambe, radiusXGambe, radiusYGambe);
 		Rotate rotazioneGambaSinistra = new Rotate();
-		rotazioneGambaSinistra.setAngle(angoloGambe);
+		rotazioneGambaSinistra.setAngle(angle);
 		rotazioneGambaSinistra.setPivotX(x - attaccaturaDistanzaGambe);
 		rotazioneGambaSinistra.setPivotY(y+attaccaturaAltezzaGambe);
 		gambaSinistra.getTransforms().addAll(rotazioneGambaSinistra);
-			//gamba destra		
+			//gamba destra
 		Ellipse gambaDestra = new Ellipse(x + attaccaturaDistanzaGambe, y+attaccaturaAltezzaGambe, radiusXGambe, radiusYGambe);
 		Rotate rotazioneGambaDestra = new Rotate();
-		rotazioneGambaDestra.setAngle(-angoloGambe);
+		rotazioneGambaDestra.setAngle(-angle);
 		rotazioneGambaDestra.setPivotX(x + attaccaturaDistanzaGambe);
 		rotazioneGambaDestra.setPivotY(y+attaccaturaAltezzaGambe);
 		gambaDestra.getTransforms().addAll(rotazioneGambaDestra);
@@ -160,14 +182,7 @@ public class Orsetto extends Application {
 		gambe.setFill(pelle);
 
 		//stampa tutto
-		Group topolino = new Group();
-		topolino.getChildren().addAll(gambe, braccia, corpo, pancia, testa, orbite, occhi, pupille, guance, naso, orecchieInterne);
-		Scene scene = new Scene(topolino ,widthScene, heightScene);
-		primaryStage.setTitle("Orsetto");
-		primaryStage.setScene(scene);
-		primaryStage.show();
-	}
-	public static void main(String args[]){
-		launch(args);
+		root.getChildren().addAll(gambe, braccia, corpo, pancia, testa, orbite, occhi, pupille, guance, naso, orecchieInterne);
+		return root;
 	}
 }
