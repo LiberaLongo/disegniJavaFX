@@ -10,7 +10,7 @@ import static javafx.application.Application.launch;
 import javafx.util.Duration;
 import javafx.animation.ScaleTransition;
 
-public class KsistersAnimation extends Application {
+public class KsistersCuori extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
                 //variabili spaziali
