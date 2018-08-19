@@ -113,9 +113,9 @@ public class KsistersCuori extends Application {
 		//Disegno dei soggetti
 		Group root = new Group();
 		//dei cuori animati e pucciosissimi
-		Cuore cuore1 = new Cuore(x - spazioX, y - spazioY-space*5/4, sizeCuori);	//in alto a sinistra
-		Cuore cuore2 = new Cuore(x + spazioX, y - spazioY-space*5/4, sizeCuori);	//in alto a destra
-		Cuore cuore3 = new Cuore(x - spazioX, y + spazioY+space*4/5, sizeCuori);	//in basso a sinistra
+		Cuore cuore1 = new Cuore(x - spazioX, y - spazioY-space*5/4, sizeCuori, Color.ORANGE);	//in alto a sinistra
+		Cuore cuore2 = new Cuore(x + spazioX, y - spazioY-space*5/4, sizeCuori, Color.FUCHSIA);	//in alto a destra
+		Cuore cuore3 = new Cuore(x - spazioX, y + spazioY+space*4/5, sizeCuori, Color.BLUE);	//in basso a sinistra
 		Cuore cuore4 = new Cuore(x + spazioX, y + spazioY+space*4/5, sizeCuori);	//in basso a destra
 		Shape cuoreS1 = cuore1.draw();
 		Shape cuoreS2 = cuore2.draw();
