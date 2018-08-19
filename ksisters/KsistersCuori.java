@@ -121,18 +121,6 @@ public class KsistersCuori extends Application {
 		Shape cuoreS2 = cuore2.draw();
 		Shape cuoreS3 = cuore3.draw();
 		Shape cuoreS4 = cuore4.draw();
-		Shape cuoriAlto = Shape.union(cuoreS1, cuoreS2);
-		Shape cuoriBasso = Shape.union(cuoreS3, cuoreS4);
-		Shape cuori = Shape.union(cuoriAlto, cuoriBasso);
-		//rendo i cuoricini pulsanti
-//		ScaleTransition st1 = new ScaleTransition();
-//		st1.setDuration(Duration.millis(1000));
-//		st1.setNode(cuori);
-//		st1.setByX(0.5);
-//		st1.setByY(0.5);
-//		st1.setCycleCount(50);
-//		st1.setAutoReverse(false);
-//		st1.play();
 		//aggiungo i cuori al disegno
 		root.getChildren().addAll(cuoreS1, cuoreS2, cuoreS3, cuoreS4);
 		//le Ksisters
