@@ -15,15 +15,19 @@ public class DisegnoOrsetti extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		//variabili ampiezza schermo
 		Double width = 1000.0, height = 700.0;
+		Double y = height/2;
+		Double size = 80.;
 		//stampa tutto
-		Group disegno = new Group();
-		Orsetto orsetto1 = new Orsetto (width*1/4, height/2, 100., Color.RED, Color.FUCHSIA);
-		Orsetto orsetto2 = new Orsetto (width*2/4, height/2, 100., Color.BLUE, Color.GREEN);
-		Orsetto orsetto3 = new Orsetto (width*3/4, height/2, 100., Color.YELLOW, Color.ORANGE);
-		disegno = orsetto1.draw(disegno);
-		disegno = orsetto2.draw(disegno);
-		disegno = orsetto3.draw(disegno);
-		Scene scene = new Scene(disegno ,width, height);
+		Group root = new Group();
+		Orsetto KIRIAIR = new Orsetto(width*2/5, y, size, Color.FUCHSIA, Color.PINK);
+		Orsetto KoMaKi_ = new Orsetto(width*3/5, y, size, Color.DARKORANGE, Color.ORANGE);
+		Orsetto KiraLushia = new Orsetto(width*4/5, y, size, Color.PINK, Color.HOTPINK);
+		Orsetto LLibera = new Orsetto(width*1/5, y, size, Color.BLUE, Color.AQUA);
+		root = LLibera.draw(root);
+		root = KiraLushia.draw(root);
+		root = KoMaKi_.draw(root);
+		root = KIRIAIR.draw(root);
+		Scene scene = new Scene(root ,width, height);
 		primaryStage.setTitle("Orsetto");
 		primaryStage.setScene(scene);
 		primaryStage.show();

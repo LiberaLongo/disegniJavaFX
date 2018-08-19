@@ -1,4 +1,4 @@
-package orsetto;
+package mixati;
 
 import javafx.application.Application;
 import javafx.scene.Group;
