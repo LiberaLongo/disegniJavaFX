@@ -1,9 +1,6 @@
 package orsetto;
 
-import javafx.application.Application;
 import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Shape;
@@ -109,15 +106,16 @@ public class Orsetto {
 		Ellipse occhioDestro = new Ellipse(x + distanzaOcchi, Ytesta, radiusXOcchi, radiusYOcchi);
 		Shape occhi = Shape.union(occhioSinistro, occhioDestro);
 		occhi.setFill(Color.WHITE);
+		occhi.setStroke(Color.BLACK);
 		//pupille
 		Ellipse pupillaSinistra = new Ellipse(x - distanzaPupille, Ytesta, radiusXPupille, radiusYPupille);
 		Ellipse pupillaDestra = new Ellipse(x + distanzaPupille, Ytesta, radiusXPupille, radiusYPupille);
 		Shape pupille = Shape.union(pupillaSinistra, pupillaDestra);
 		pupille.setFill(Color.BLACK);
-		pupille.setStrokeWidth(2);
 		//guance
 		Ellipse guance = new Ellipse(x, Ytesta+altezzaGuance, radiusXGuance, radiusYGuance);
 		guance.setFill(pellechiara);
+		guance.setStroke(Color.BLACK);
 		//naso
 		Ellipse naso = new Ellipse(x, Ytesta+altezzaNaso, radiusXNaso, radiusYNaso);
 		naso.setFill(pelle);
