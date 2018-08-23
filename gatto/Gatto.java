@@ -21,7 +21,7 @@ public class Gatto {
 		this.size = size;
 		this.skin = Color.ORANGE;
 		this.eye = Color.GREEN;
-		this.belly = Color.WHITE;
+		this.belly = Color.YELLOW;
 	}
 	Gatto (Double x, Double y, Double size, Color skin) {
 		this.x = x;
@@ -29,7 +29,7 @@ public class Gatto {
 		this.size = size;
 		this.skin = skin;
 		this.eye = Color.GREEN;
-		this.belly = Color.WHITE;
+		this.belly = Color.YELLOW;
 	}
 	Gatto (Double x, Double y, Double size, Color skin, Color eye) {
 		this.x = x;
@@ -37,7 +37,7 @@ public class Gatto {
 		this.size = size;
 		this.skin = skin;
 		this.eye = eye;
-		this.belly = Color.WHITE;
+		this.belly = Color.YELLOW;
 	}
 	Gatto (Double x, Double y, Double size, Color skin, Color eye, Color belly) {
 		this.x = x;
@@ -53,7 +53,7 @@ public class Gatto {
 		//PROPORZIONI
 
 		//testa
-		Double Ytesta = this.size * 2;
+		Double Ytesta = this.y;
 		Double radiusXCranio = this.size*3/2;
 		Double radiusYCranio = this.size;
 		//muso
@@ -69,7 +69,13 @@ public class Gatto {
 		Double raggioOcchi = radiusYCranio/3;
 		Double distanzaOcchi = radiusXCranio/3;
 		Double larghezzaPupille = raggioOcchi/2;
-
+		//orecchie
+		Double raggioOrecchie = this.size;
+		Double altezzaOrecchiaSopra = Ytesta - radiusYCranio;
+		Double altezzaOrecchiaSotto = Ytesta - radiusYCranio/2;
+		Double altezzaOrecchiaInterno = altezzaOrecchiaSotto + radiusYCranio/3;
+		Double distanzaOrecchiaSopra = radiusXCranio/2;
+		Double distanzaOrecchiaSotto = radiusXCranio;
 		//DISEGNO
 
 		Ellipse cranio = new Ellipse (x, Ytesta, radiusXCranio, radiusYCranio);
@@ -109,8 +115,27 @@ public class Gatto {
 		Shape pupillaDestra = Shape.intersect(pupillaDestraSinistra, pupillaDestraDestra);
 		Shape pupille = Shape.union(pupillaSinistra, pupillaDestra);
 		pupille.setFill(Color.BLACK);
+		//orecchie
+		Circle orecchiaSinistraSopra = new Circle (x - distanzaOrecchiaSopra, altezzaOrecchiaSopra, raggioOrecchie);
+		Circle orecchiaSinistraSotto = new Circle (x - distanzaOrecchiaSotto, altezzaOrecchiaSotto, raggioOrecchie);
+		Shape orecchiaSinistra = Shape.intersect(orecchiaSinistraSopra, orecchiaSinistraSotto);
+		Circle orecchiaDestraSopra = new Circle (x + distanzaOrecchiaSopra, altezzaOrecchiaSopra, raggioOrecchie);
+		Circle orecchiaDestraSotto = new Circle (x + distanzaOrecchiaSotto, altezzaOrecchiaSotto, raggioOrecchie);
+		Shape orecchiaDestra = Shape.intersect(orecchiaDestraSopra, orecchiaDestraSotto);
+		Shape orecchie = Shape.union (orecchiaSinistra, orecchiaDestra);
+		orecchie.setFill(this.skin);
+		//orecchie interne
+		Circle orecchiaInternaSinistraSopra = orecchiaSinistraSopra;
+		Circle orecchiaInternaSinistraSotto = new Circle (x - distanzaOrecchiaSotto, altezzaOrecchiaInterno, raggioOrecchie);
+		Shape orecchiaInternaSinistra = Shape.intersect(orecchiaInternaSinistraSopra, orecchiaInternaSinistraSotto);
+		Circle orecchiaInternaDestraSopra = orecchiaDestraSopra;
+		Circle orecchiaInternaDestraSotto = new Circle (x + distanzaOrecchiaSotto, altezzaOrecchiaInterno, raggioOrecchie);
+		Shape orecchiaInternaDestra = Shape.intersect(orecchiaInternaDestraSopra, orecchiaInternaDestraSotto);
+		Shape orecchieInterne = Shape.union (orecchiaInternaSinistra, orecchiaInternaDestra);
+		orecchieInterne.setFill(Color.PINK);
+		
 		//INSERISCO IN GROUP
-		root.getChildren().addAll(cranio, occhi, pupille, mento, labbra, naso);		
+		root.getChildren().addAll(orecchie, orecchieInterne, cranio, occhi, pupille, mento, labbra, naso);		
 		return root;
 	}
 	public Group drawBody (Group root) {

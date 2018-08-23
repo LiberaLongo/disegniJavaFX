@@ -11,14 +11,14 @@ public class disegnogatti extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		//variabili ampiezza schermo
 		Double width = 1000.0, height = 700.0;
-		Double x = width/2, y= height/2, size = 100.;
+		Double x = width/2, y= height/2, size = 200.;
 		//cosa voglio disegnare
 		Group root = new Group();
-		Gatto Norvy = new Gatto(x, y, size);
+		Gatto Norvy = new Gatto(x, y, size, Color.GREY, Color.GREEN, Color.LIGHTGREY);
 		root = Norvy.draw(root);
 		//Stampa tutto
 		Scene scene = new Scene(root , width, height);
-		primaryStage.setTitle("cat by LLibera");
+		primaryStage.setTitle("Norvy by LLibera");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
