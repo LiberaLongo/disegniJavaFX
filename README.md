@@ -78,3 +78,8 @@ cd Scrivania/disegniJavaFX
 javac ksisters/*.java
 
 java ksisters.Ksisters
+
+#in alternativa su Windows
+clonare il file premendo sul pulsante clone del sito di github
+unzippare
+usare i soliti comandi (java e javac) per compilare ed eseguire
