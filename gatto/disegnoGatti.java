@@ -10,15 +10,18 @@ public class disegnoGatti extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		//variabili ampiezza schermo
-		Double width = 1000.0, height = 700.0;
-		Double x = width/2, y= height/2, size = 200.;
+		Double width = 1300.0, height = 700.0;
+		//centro dello schermo
+		Double size = 200.;
 		//cosa voglio disegnare
 		Group root = new Group();
-		Gatto Norvy = new Gatto(x, y, size, Color.GREY, Color.GREEN, Color.LIGHTGREY);
+		Gatto PanteraRosa = new Gatto(width/3, height/2, size, Color.PLUM, Color.YELLOW, Color.BISQUE);
+		Gatto Norvy = new Gatto(width*4/5, height*2/3, size/2, Color.GREY, Color.GREEN, Color.LIGHTGREY);
+		root = PanteraRosa.draw(root);
 		root = Norvy.draw(root);
 		//Stampa tutto
 		Scene scene = new Scene(root , width, height);
-		primaryStage.setTitle("Norvy by LLibera");
+		primaryStage.setTitle("Norvy e la pantera rosa by LLibera");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
