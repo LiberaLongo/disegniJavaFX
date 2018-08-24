@@ -10,7 +10,7 @@ import javafx.scene.shape.Shape;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
 
-public class DisegnoOrsetti extends Application {
+public class disegnoOrsetti extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		//variabili ampiezza schermo

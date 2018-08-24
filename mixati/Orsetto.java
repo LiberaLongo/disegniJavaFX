@@ -88,12 +88,10 @@ public class Orsetto {
 		testa.setFill(pelle);
 		//orecchie interne
 		//preparazione orecchie interne
-	        Circle tD = cranio;
-	        Circle tS = cranio;
-		Circle internosinistro = new Circle(x - distanzaOrecchieInterne, Ytesta-altezzaOrecchieInterne, raggioOrecchieInterne);
+	        Circle internosinistro = new Circle(x - distanzaOrecchieInterne, Ytesta-altezzaOrecchieInterne, raggioOrecchieInterne);
 		Circle internodestro = new Circle(x + distanzaOrecchieInterne, Ytesta-altezzaOrecchieInterne, raggioOrecchieInterne);
-		Shape orecchioInternoSinistro = Shape.subtract(internosinistro, tS);
-		Shape orecchioInternoDestro = Shape.subtract(internodestro, tD);
+		Shape orecchioInternoSinistro = Shape.subtract(internosinistro, cranio);
+		Shape orecchioInternoDestro = Shape.subtract(internodestro, cranio);
 		Shape orecchieInterne = Shape.union(orecchioInternoSinistro, orecchioInternoDestro);
 		orecchieInterne.setFill(pellechiara);
 		//orbite

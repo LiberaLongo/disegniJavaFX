@@ -125,12 +125,10 @@ public class Gatto {
 		Shape orecchie = Shape.union (orecchiaSinistra, orecchiaDestra);
 		orecchie.setFill(this.skin);
 		//orecchie interne
-		Circle orecchiaInternaSinistraSopra = orecchiaSinistraSopra;
 		Circle orecchiaInternaSinistraSotto = new Circle (x - distanzaOrecchiaSotto, altezzaOrecchiaInterno, raggioOrecchie);
-		Shape orecchiaInternaSinistra = Shape.intersect(orecchiaInternaSinistraSopra, orecchiaInternaSinistraSotto);
-		Circle orecchiaInternaDestraSopra = orecchiaDestraSopra;
+		Shape orecchiaInternaSinistra = Shape.intersect(orecchiaInternaSinistraSotto, orecchiaSinistra);
 		Circle orecchiaInternaDestraSotto = new Circle (x + distanzaOrecchiaSotto, altezzaOrecchiaInterno, raggioOrecchie);
-		Shape orecchiaInternaDestra = Shape.intersect(orecchiaInternaDestraSopra, orecchiaInternaDestraSotto);
+		Shape orecchiaInternaDestra = Shape.intersect(orecchiaInternaDestraSotto, orecchiaDestra);
 		Shape orecchieInterne = Shape.union (orecchiaInternaSinistra, orecchiaInternaDestra);
 		orecchieInterne.setFill(Color.PINK);
 		

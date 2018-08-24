@@ -10,7 +10,7 @@ import static javafx.application.Application.launch;
 import javafx.util.Duration;
 import javafx.animation.ScaleTransition;
 
-public class Disegno extends Application {
+public class disegno extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
                 //variabili spaziali

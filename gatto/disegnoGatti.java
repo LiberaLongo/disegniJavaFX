@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 
-public class disegnogatti extends Application {
+public class disegnoGatti extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		//variabili ampiezza schermo
