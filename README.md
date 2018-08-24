@@ -7,6 +7,8 @@ Supponi di:
 1. aver un sistema operativo Linux (io l'ho fatto da Ubuntu)
 2. voler salvare questa cartella sulla Scrivania
 
+## Ubuntu
+
 Allora puoi fare:
 Ctrl+Alt+T
 (per aprire il terminale)
@@ -79,7 +81,7 @@ javac ksisters/*.java
 
 java ksisters.Ksisters
 
-# in alternativa su Windows
+### in alternativa su Windows
 clonare il file premendo sul pulsante clone del sito di github
 unzippare
 usare i soliti comandi (java e javac) per compilare ed eseguire
