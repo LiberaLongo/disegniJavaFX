@@ -11,6 +11,7 @@ public class Orsetto {
 	private Double x;
 	private Double y;
 	private Double size;
+	private Double Ytesta;
 	private Color pelle;
 	private Color pellechiara;
 	private Double angle;
@@ -19,6 +20,7 @@ public class Orsetto {
 		this.x = x;
 		this.y = y;
 		this.size = size;
+		this.Ytesta = this.y - this.size*2;
 		this.pelle = Color.BROWN;
 		this.pellechiara = Color.SANDYBROWN;
 		this.angle = 20.;
@@ -29,6 +31,7 @@ public class Orsetto {
 		this.y = y;
 		this.size = size;
 		this.pelle = pelle;
+		this.Ytesta = this.y - this.size*2;
 		this.pellechiara = pellechiara;
 		this.angle = 20.;
 	}
@@ -37,15 +40,22 @@ public class Orsetto {
 		this.x = x;
 		this.y = y;
 		this.size = size;
+		this.Ytesta = this.y - this.size*2;
 		this.pelle = pelle;
 		this.pellechiara = pellechiara;
 		this.angle = angle;
 	}
 
+	public void setYtestaDistance(Double distance) {
+		this.Ytesta = this.y - distance;
+	}
+	public Double getYtesta() {
+		return this.Ytesta;
+	}
+
 	public Group drawHead(Group root) {
 		//PROPORZIONI
 
-		Double Ytesta = y-size * 2;
 		//orecchie esterne
 		Double distanzaOrecchie = size*2/3;
 		Double altezzaOrecchie = size*2/3;
