@@ -45,7 +45,7 @@ public class Orsetto {
 		this.pellechiara = pellechiara;
 		this.angle = angle;
 	}
-
+	//questa funzione serve ad esempio quando si vuole disegnare solo la testa e non tutto il corpo
 	public void setYtestaDistance(Double distance) {
 		this.Ytesta = this.y - distance;
 	}

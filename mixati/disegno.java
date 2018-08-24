@@ -18,7 +18,6 @@ public class disegno extends Application {
 		Double size = 80.;
 		Double width = 1000.;
 		Double height = 700.;
-		Double altezzaTeste = height/4;
 		Double y = height/2;
 		//KIRIAIR
 		Color coloriKIRIAIR[] = {
@@ -131,6 +130,7 @@ public class disegno extends Application {
 		root.getChildren().addAll( LLiberacuore.draw(), KoMaKi_cuore.draw(), KiraLushiacuore.draw(), KIRIAIRcuore.draw() );
 */
 		//le Ksisters
+		Double altezzaTeste = KIRIAIRbody.getYtesta()-pixel;
 		MCskin KIRIAIR 		= new MCskin(XKIRIAIR, altezzaTeste, pixel, coloriKIRIAIR, matrixKIRIAIR);
 		MCskin KoMaKi_ 		= new MCskin(XKoMaKi_, altezzaTeste, pixel, coloriKoMaKi_, matrixKoMaKi_);
 		MCskin KiraLushia	= new MCskin(XKiraLushia, altezzaTeste, pixel, coloriKiraLushia, matrixKiraLushia);

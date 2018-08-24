@@ -12,13 +12,11 @@ public class disegnoGatti extends Application {
 		//variabili ampiezza schermo
 		Double width = 1300.0, height = 700.0;
 		//centro dello schermo
-		Double size = 200.;
+		Double size = 100.;
 		//cosa voglio disegnare
 		Group root = new Group();
 		Gatto PanteraRosa = new Gatto(width/3, height/2, size, Color.PLUM, Color.YELLOW, Color.BISQUE, Color.FUCHSIA);
 		Gatto Norvy = new Gatto(width*4/5, height*2/3, size/2, Color.GREY, Color.GREEN, Color.LIGHTGREY);
-		PanteraRosa.setYtestaDistance(0.);
-		Norvy.setYtestaDistance(0.);
 		root = PanteraRosa.draw(root);
 		root = Norvy.draw(root);
 		//Stampa tutto

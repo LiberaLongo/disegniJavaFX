@@ -1,12 +1,12 @@
 package gatto;
 
 import javafx.scene.Group;
+import javafx.scene.shape.Shape;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Shape;
 import javafx.scene.paint.Color;
-import javafx.scene.transform.Rotate;
 
 public class Gatto {
 	private Double x;
@@ -21,7 +21,7 @@ public class Gatto {
 		this.x = x;
 		this.y = y;
 		this.size = size;
-		this.Ytesta = this.y - this.size*2;
+		this.Ytesta = this.y - this.size*3/2;
 		this.skin = Color.ORANGE;
 		this.eye = Color.GREEN;
 		this.belly = Color.YELLOW;
@@ -31,7 +31,7 @@ public class Gatto {
 		this.x = x;
 		this.y = y;
 		this.size = size;
-		this.Ytesta = this.y - this.size*2;
+		this.Ytesta = this.y - this.size*3/2;
 		this.skin = skin;
 		this.eye = Color.GREEN;
 		this.belly = Color.YELLOW;
@@ -41,7 +41,7 @@ public class Gatto {
 		this.x = x;
 		this.y = y;
 		this.size = size;
-		this.Ytesta = this.y - this.size*2;
+		this.Ytesta = this.y - this.size*3/2;
 		this.skin = skin;
 		this.eye = eye;
 		this.belly = Color.YELLOW;
@@ -51,7 +51,7 @@ public class Gatto {
 		this.x = x;
 		this.y = y;
 		this.size = size;
-		this.Ytesta = this.y - this.size*2;
+		this.Ytesta = this.y - this.size*3/2;
 		this.skin = skin;
 		this.eye = eye;
 		this.belly = belly;
@@ -61,13 +61,13 @@ public class Gatto {
 		this.x = x;
 		this.y = y;
 		this.size = size;
-		this.Ytesta = this.y - this.size*2;
+		this.Ytesta = this.y - this.size*3/2;
 		this.skin = skin;
 		this.eye = eye;
 		this.belly = belly;
 		this.nose = nose;
 	}
-
+	//Se si vuole disegnare solo la TESTA
 	public void setYtestaDistance(Double distance) {
 		this.Ytesta = this.y - distance;
 	}
@@ -166,11 +166,90 @@ public class Gatto {
 		root.getChildren().addAll(orecchie, orecchieInterne, cranio, occhi, pupille, mento, labbra, naso);		
 		return root;
 	}
+	private Group drawDita (Group root, Double x, Double y, Double distance) {
+		//PROPORZIONI
+		Double radiusX = distance/3;
+		Double radiusY = distance*2/3;
+		//DISEGNO
+		//ellissi
+		Ellipse ditoSinistro = new Ellipse(x, y, radiusX, radiusY);
+		Ellipse ditoCentrale = new Ellipse(x + distance/2, y, radiusX, radiusY);
+		Ellipse ditoDestro = new Ellipse(x + distance, y, radiusX, radiusY);
+		//colore
+		ditoSinistro.setFill(this.skin);
+		ditoCentrale.setFill(this.skin);
+		ditoDestro.setFill(this.skin);
+		//bordo
+		ditoSinistro.setStroke(Color.BLACK);
+		ditoCentrale.setStroke(Color.BLACK);
+		ditoDestro.setStroke(Color.BLACK);
+		//INSERISCO IN GROUP
+		root.getChildren().addAll(ditoSinistro, ditoDestro, ditoCentrale);
+		return root;
+	}
 	public Group drawBody (Group root) {
 		//PROPORZIONI
+
+		//corpo
+		Double Ycorpo = this.y + this.size;
+		Double radiusXCorpo = this.size;
+		Double radiusYCorpo = this.size*2;
+		//pancia
+		Double altezzaPancia = Ycorpo + radiusXCorpo/4;
+		Double radiusXPancia = radiusXCorpo*2/3;
+		Double radiusYPancia = radiusYCorpo*2/3;
+		//braccia
+		Double distanzaBraccia = this.size*7/8;
+		Double widthBraccia = radiusXCorpo/2;
+		Double heightBraccia = radiusYCorpo*3/2;
+		//gambe
+		Double radiusXGambe = radiusXCorpo/3;
+		Double radiusYGambe = radiusYCorpo/2;
+		Double altezzaGambe = Ycorpo + radiusYCorpo/2;
+		Double distanzaGambe = this.size*7/6;
+
 		//DISEGNO
+		
+		//corpo
+		Ellipse corpo = new Ellipse(this.x, Ycorpo, radiusXCorpo, radiusYCorpo);
+		corpo.setFill(this.skin);
+		//pancia
+		Ellipse panciaE = new Ellipse(this.x, altezzaPancia, radiusXPancia, radiusYPancia);
+		Shape pancia = Shape.intersect(corpo, panciaE);
+		pancia.setFill(this.belly);
+		//braccia
+			//braccio sinistro
+		Rectangle braccioSinistroRectangle = new Rectangle(this.x - distanzaBraccia, this.y, widthBraccia, heightBraccia);
+		Circle braccioSinistroCircle = new Circle(this.x + widthBraccia/2 - distanzaBraccia , this.y, widthBraccia/2);
+		Shape braccioSinistro = Shape.union(braccioSinistroRectangle, braccioSinistroCircle);
+			//braccio destro
+		Rectangle braccioDestroRectangle = new Rectangle(this.x - widthBraccia + distanzaBraccia, this.y, widthBraccia, heightBraccia);
+		Circle braccioDestroCircle = new Circle(this.x - widthBraccia/2 + distanzaBraccia, this.y, widthBraccia/2);
+		Shape braccioDestro = Shape.union(braccioDestroRectangle, braccioDestroCircle);
+			//entrambe le braccia
+		Shape braccia = Shape.union(braccioSinistro, braccioDestro);
+		braccia.setFill(this.skin);
+		braccia.setStroke(Color.BLACK);
+		//gambe
+		Ellipse gambaSinistra = new Ellipse(x - distanzaGambe, altezzaGambe, radiusXGambe, radiusYGambe);
+		Ellipse gambaDestra = new Ellipse(x + distanzaGambe, altezzaGambe, radiusXGambe, radiusYGambe);
+		Shape gambe = Shape.union(gambaSinistra, gambaDestra);
+		gambe.setFill(this.skin);
+
 		//INSERISCO IN GROUP
-		root.getChildren().addAll();
+		root.getChildren().addAll(gambe, corpo, pancia);
+		//dita delle gambe
+			//gamba sinistra
+		root = this.drawDita(root, this.x - distanzaGambe - radiusXGambe/2, altezzaGambe + radiusYGambe, radiusXGambe);
+			//gamba destra
+		root = this.drawDita(root, this.x + distanzaGambe - radiusXGambe/2, altezzaGambe + radiusYGambe, radiusXGambe);
+		//braccia
+		root.getChildren().add(braccia);
+		//dita delle braccia
+			//braccio sinistro
+		root = this.drawDita(root, this.x - distanzaBraccia, this.y + heightBraccia, widthBraccia);
+			//braccio destro
+		root = this.drawDita(root, this.x - widthBraccia + distanzaBraccia, this.y + heightBraccia, widthBraccia);
 		return root;
 	}
 	public Group draw (Group root) {
