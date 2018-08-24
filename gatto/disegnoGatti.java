@@ -15,7 +15,8 @@ public class disegnoGatti extends Application {
 		Double size = 100.;
 		//cosa voglio disegnare
 		Group root = new Group();
-		Gatto PanteraRosa = new Gatto(width/3, height/2, size, Color.PLUM, Color.YELLOW, Color.BISQUE, Color.FUCHSIA);
+		Gatto PanteraRosa = new Gatto(width/3, height/2, size, Color.PLUM, Color.YELLOW, Color.BISQUE);
+		PanteraRosa.setNaso(Color.FUCHSIA);
 		Gatto Norvy = new Gatto(width*4/5, height*2/3, size/2, Color.GREY, Color.GREEN, Color.LIGHTGREY);
 		root = PanteraRosa.draw(root);
 		root = Norvy.draw(root);

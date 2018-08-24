@@ -9,63 +9,106 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.paint.Color;
 
 public class Gatto {
+
 	private Double x;
 	private Double y;
 	private Double Ytesta;
 	private Double size;
-	private Color skin;	//pelle  (colore di default: arancione)
-	private Color eye;	//occhi  (colore di default: verde)
-	private Color belly;	//pancia (colore di default: giallo)
-	private Color nose;	//naso   (colore di default: rosa)
+	//colori
+	private Color pelle;	//arancio
+	private Color occhi;	//verde
+	private Color muso;	//un colore chiaro, giallo
+	private Color pancia;	//=muso
+	private Color naso;	//rosa
+	private Color orecchie;	//rosa
+	//bordi
+	private Boolean bordi;
+
 	Gatto (Double x, Double y, Double size) {
 		this.x = x;
 		this.y = y;
 		this.size = size;
 		this.Ytesta = this.y - this.size*3/2;
-		this.skin = Color.ORANGE;
-		this.eye = Color.GREEN;
-		this.belly = Color.YELLOW;
-		this.nose = Color.PINK;
+		//colori
+		this.pelle = Color.ORANGE;
+		this.occhi = Color.GREEN;
+		this.pancia = Color.YELLOW;
+		this.muso = this.pancia;
+		this.naso = Color.PINK;
+		this.orecchie = Color.PINK;
+		this.bordi = false;
 	}
-	Gatto (Double x, Double y, Double size, Color skin) {
+	Gatto (Double x, Double y, Double size, Color pelle, Color occhi, Color pancia) {
 		this.x = x;
 		this.y = y;
 		this.size = size;
 		this.Ytesta = this.y - this.size*3/2;
-		this.skin = skin;
-		this.eye = Color.GREEN;
-		this.belly = Color.YELLOW;
-		this.nose = Color.PINK;
+		//colori
+		this.pelle = pelle;
+		this.occhi = occhi;
+		this.pancia = pancia;
+		this.muso = this.pancia;
+		this.naso = Color.PINK;
+		this.orecchie = Color.PINK;
+		this.bordi = false;
 	}
-	Gatto (Double x, Double y, Double size, Color skin, Color eye) {
+	Gatto (Double x, Double y, Double size, Color pelle, Color occhi, Color pancia, Color muso, Color naso, Color orecchie) {
 		this.x = x;
 		this.y = y;
 		this.size = size;
 		this.Ytesta = this.y - this.size*3/2;
-		this.skin = skin;
-		this.eye = eye;
-		this.belly = Color.YELLOW;
-		this.nose = Color.PINK;
+		//colori
+		this.pelle = pelle;
+		this.occhi = occhi;
+		this.pancia = pancia;
+		this.muso = muso;
+		this.naso = naso;
+		this.orecchie = orecchie;
+		this.bordi = false;
 	}
-	Gatto (Double x, Double y, Double size, Color skin, Color eye, Color belly) {
-		this.x = x;
-		this.y = y;
-		this.size = size;
-		this.Ytesta = this.y - this.size*3/2;
-		this.skin = skin;
-		this.eye = eye;
-		this.belly = belly;
-		this.nose = Color.PINK;
+
+	//setters e getters dei colori (per non impazzire)
+	public void setPelle(Color pelle) {
+		this.pelle = pelle;
 	}
-	Gatto (Double x, Double y, Double size, Color skin, Color eye, Color belly, Color nose) {
-		this.x = x;
-		this.y = y;
-		this.size = size;
-		this.Ytesta = this.y - this.size*3/2;
-		this.skin = skin;
-		this.eye = eye;
-		this.belly = belly;
-		this.nose = nose;
+	public Color getPelle() {
+		return this.pelle;
+	}
+	public void setOcchi(Color occhi) {
+		this.occhi = occhi;
+	}
+	public Color getOcchi() {
+		return this.occhi;
+	}
+	public void setMuso(Color muso) {
+		this.muso = muso;
+	}
+	public Color getMuso() {
+		return this.muso;
+	}
+	public void setPancia(Color pancia) {
+		this.pancia = pancia;
+	}
+	public Color getPancia() {
+		return this.pancia;
+	}
+	public void setNaso(Color naso) {
+		this.naso = naso;
+	}
+	public Color getNaso() {
+		return this.naso;
+	}
+	public void setOrecchie(Color orecchie) {
+		this.orecchie = orecchie;
+	}
+	public Color getOrecchie() {
+		return this.orecchie;
+	}
+	public void setStroke() {
+		this.bordi = true;
+	}
+	public Boolean getStroke() {
+		return this.bordi;
 	}
 	//Se si vuole disegnare solo la TESTA
 	public void setYtestaDistance(Double distance) {
@@ -105,19 +148,21 @@ public class Gatto {
 
 		//DISEGNO
 
-		//testa
+		//cranio
 		Ellipse cranio = new Ellipse (this.x, this.Ytesta, radiusXCranio, radiusYCranio);
-		cranio.setFill(this.skin);
+		cranio.setFill(this.pelle);
+		if(this.bordi)
+			cranio.setStroke(Color.BLACK);
 		//muso
 		Circle labbraSinistra = new Circle (this.x - raggioMuso, altezzaMuso, raggioMuso);
 		Circle labbraDestra = new Circle (this.x + raggioMuso, altezzaMuso, raggioMuso);
 		Shape labbra = Shape.union(labbraSinistra, labbraDestra);
-		labbra.setFill(this.belly);
+		labbra.setFill(this.muso);
 		labbra.setStrokeWidth(1);
 		labbra.setStroke(Color.BLACK);
 		Circle mento = new Circle (this.x, altezzaMento, raggioMento);
 		mento.setStroke(Color.BLACK);
-		mento.setFill(this.belly);
+		mento.setFill(this.muso);
 		//naso
 		Polygon naso = new Polygon();
 		naso.getPoints().addAll(new Double[] {
@@ -125,13 +170,15 @@ public class Gatto {
 			this.x - raggioNaso * Math.sin( Math.PI/3), altezzaNaso,
 			this.x, altezzaMuso,		
 		});
-		naso.setFill(this.nose);
+		naso.setFill(this.naso);
 		naso.setStroke(Color.RED);
 		//occhi
 		Circle occhioSinistro = new Circle (this.x - distanzaOcchi, altezzaOcchi, raggioOcchi);
 		Circle occhioDestro = new Circle (this.x + distanzaOcchi, altezzaOcchi, raggioOcchi);
 		Shape occhi = Shape.union(occhioSinistro, occhioDestro);
-		occhi.setFill(this.eye);
+		occhi.setFill(this.occhi);		
+		if(this.bordi)
+			occhi.setStroke(Color.BLACK);
 		//pupille
 			//due parti della pupilla sinistra
 		Circle pupillaSinistraSinistra = new Circle (this.x - distanzaOcchi - larghezzaPupille, altezzaOcchi, raggioOcchi);
@@ -152,15 +199,19 @@ public class Gatto {
 		Circle orecchiaDestraSotto = new Circle (this.x + distanzaOrecchiaSotto, altezzaOrecchiaSotto, raggioOrecchie);
 		Shape orecchiaDestra = Shape.intersect(orecchiaDestraSopra, orecchiaDestraSotto);
 		Shape orecchie = Shape.union (orecchiaSinistra, orecchiaDestra);
-		orecchie.setFill(this.skin);
+		orecchie.setFill(this.pelle);
+		if(this.bordi)
+			orecchie.setStroke(Color.BLACK);
 		//orecchie interne
 		Circle orecchiaInternaSinistraSotto = new Circle (this.x - distanzaOrecchiaSotto, altezzaOrecchiaInterno, raggioOrecchie);
 		Shape orecchiaInternaSinistra = Shape.intersect(orecchiaInternaSinistraSotto, orecchiaSinistra);
 		Circle orecchiaInternaDestraSotto = new Circle (this.x + distanzaOrecchiaSotto, altezzaOrecchiaInterno, raggioOrecchie);
 		Shape orecchiaInternaDestra = Shape.intersect(orecchiaInternaDestraSotto, orecchiaDestra);
 		Shape orecchieInterne = Shape.union (orecchiaInternaSinistra, orecchiaInternaDestra);
-		orecchieInterne.setFill(Color.PINK);
-		
+		orecchieInterne.setFill(this.orecchie);
+		if(this.bordi)
+			orecchieInterne.setStroke(Color.BLACK);
+
 		//INSERISCO IN GROUP
 
 		root.getChildren().addAll(orecchie, orecchieInterne, cranio, occhi, pupille, mento, labbra, naso);		
@@ -176,9 +227,9 @@ public class Gatto {
 		Ellipse ditoCentrale = new Ellipse(x + distance/2, y, radiusX, radiusY);
 		Ellipse ditoDestro = new Ellipse(x + distance, y, radiusX, radiusY);
 		//colore
-		ditoSinistro.setFill(this.skin);
-		ditoCentrale.setFill(this.skin);
-		ditoDestro.setFill(this.skin);
+		ditoSinistro.setFill(this.pelle);
+		ditoCentrale.setFill(this.pelle);
+		ditoDestro.setFill(this.pelle);
 		//bordo
 		ditoSinistro.setStroke(Color.BLACK);
 		ditoCentrale.setStroke(Color.BLACK);
@@ -212,11 +263,15 @@ public class Gatto {
 		
 		//corpo
 		Ellipse corpo = new Ellipse(this.x, Ycorpo, radiusXCorpo, radiusYCorpo);
-		corpo.setFill(this.skin);
+		corpo.setFill(this.pelle);
+		if(this.bordi)
+			corpo.setStroke(Color.BLACK);
 		//pancia
 		Ellipse panciaE = new Ellipse(this.x, altezzaPancia, radiusXPancia, radiusYPancia);
 		Shape pancia = Shape.intersect(corpo, panciaE);
-		pancia.setFill(this.belly);
+		pancia.setFill(this.pancia);
+		if(this.bordi)
+			pancia.setStroke(Color.BLACK);
 		//braccia
 			//braccio sinistro
 		Rectangle braccioSinistroRectangle = new Rectangle(this.x - distanzaBraccia, this.y, widthBraccia, heightBraccia);
@@ -228,13 +283,15 @@ public class Gatto {
 		Shape braccioDestro = Shape.union(braccioDestroRectangle, braccioDestroCircle);
 			//entrambe le braccia
 		Shape braccia = Shape.union(braccioSinistro, braccioDestro);
-		braccia.setFill(this.skin);
+		braccia.setFill(this.pelle);
 		braccia.setStroke(Color.BLACK);
 		//gambe
 		Ellipse gambaSinistra = new Ellipse(x - distanzaGambe, altezzaGambe, radiusXGambe, radiusYGambe);
 		Ellipse gambaDestra = new Ellipse(x + distanzaGambe, altezzaGambe, radiusXGambe, radiusYGambe);
 		Shape gambe = Shape.union(gambaSinistra, gambaDestra);
-		gambe.setFill(this.skin);
+		gambe.setFill(this.pelle);
+		if(this.bordi)
+			gambe.setStroke(Color.BLACK);
 
 		//INSERISCO IN GROUP
 		root.getChildren().addAll(gambe, corpo, pancia);
@@ -258,3 +315,4 @@ public class Gatto {
 		return root;		
 	}
 }
+
