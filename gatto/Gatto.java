@@ -1,12 +1,13 @@
 package gatto;
 
 import javafx.scene.Group;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Polygon;
-import javafx.scene.paint.Color;
+import javafx.scene.transform.Rotate;
 
 public class Gatto {
 
@@ -21,8 +22,10 @@ public class Gatto {
 	private Color pancia;	//=muso
 	private Color naso;	//rosa
 	private Color orecchie;	//rosa
-	//bordi
-	private Boolean bordi;
+	private Color strisce;
+	//booleani
+	private Boolean bordi;		//false
+	private Boolean tigrato;	//false
 
 	Gatto (Double x, Double y, Double size) {
 		this.x = x;
@@ -36,7 +39,9 @@ public class Gatto {
 		this.muso = this.pancia;
 		this.naso = Color.PINK;
 		this.orecchie = Color.PINK;
+		this.strisce = Color.BLACK;
 		this.bordi = false;
+		this.tigrato = false;
 	}
 	Gatto (Double x, Double y, Double size, Color pelle, Color occhi, Color pancia) {
 		this.x = x;
@@ -50,9 +55,11 @@ public class Gatto {
 		this.muso = this.pancia;
 		this.naso = Color.PINK;
 		this.orecchie = Color.PINK;
+		this.strisce = Color.BLACK;
 		this.bordi = false;
+		this.tigrato = false;
 	}
-	Gatto (Double x, Double y, Double size, Color pelle, Color occhi, Color pancia, Color muso, Color naso, Color orecchie) {
+	Gatto (Double x, Double y, Double size, Color pelle, Color occhi, Color pancia, Color muso, Color naso, Color orecchie, Color Strisce) {
 		this.x = x;
 		this.y = y;
 		this.size = size;
@@ -64,7 +71,9 @@ public class Gatto {
 		this.muso = muso;
 		this.naso = naso;
 		this.orecchie = orecchie;
+		this.strisce = strisce;
 		this.bordi = false;
+		this.tigrato = false;
 	}
 
 	//setters e getters dei colori (per non impazzire)
@@ -104,11 +113,31 @@ public class Gatto {
 	public Color getOrecchie() {
 		return this.orecchie;
 	}
+	public void setStrisce(Color strisce) {
+		this.tigrato = true;		//se ha le strisce allora è tigrato
+		this.strisce = strisce;
+	}
+	public Color getStrisce() {
+		return this.strisce;
+	}
+	//booleani
 	public void setStroke() {
 		this.bordi = true;
 	}
+	public void resetStroke() {
+		this.bordi = false;
+	}
 	public Boolean getStroke() {
 		return this.bordi;
+	}
+	public void setTigrato() {
+		this.tigrato = true;		//le strisce sono nere di default, e non ho bisogno di cambiare colore
+	}
+	public void resetTigrato() {
+		this.tigrato = false;
+	}
+	public Boolean getTigrato() {
+		return this.tigrato;
 	}
 	//Se si vuole disegnare solo la TESTA
 	public void setYtestaDistance(Double distance) {
@@ -117,7 +146,25 @@ public class Gatto {
 	public Double getYtesta() {
 		return this.Ytesta;
 	}
-
+	private Group drawStriscia(Group root, Shape shape, Double x, Double y, Double angle) {
+		Double base = this.size/10;
+		Double altezza = base*3;
+		Polygon triangolo = new Polygon();
+		triangolo.getPoints().addAll(new Double[] {
+			x, y,
+			x - base, y - altezza,
+			x + base, y - altezza,
+		});
+		Rotate rotate = new Rotate();
+		rotate.setAngle(angle);
+		rotate.setPivotX(x);
+		rotate.setPivotY(y);
+		triangolo.getTransforms().addAll(rotate);
+		Shape striscia = Shape.intersect(triangolo, shape);
+		striscia.setFill(this.strisce);
+		root.getChildren().add(striscia);
+		return root;
+	}
 	public Group drawHead (Group root) {
 
 		//PROPORZIONI
@@ -211,10 +258,28 @@ public class Gatto {
 		orecchieInterne.setFill(this.orecchie);
 		if(this.bordi)
 			orecchieInterne.setStroke(Color.BLACK);
-
 		//INSERISCO IN GROUP
 
-		root.getChildren().addAll(orecchie, orecchieInterne, cranio, occhi, pupille, mento, labbra, naso);		
+		root.getChildren().addAll(orecchie, orecchieInterne, cranio, occhi, pupille, mento, labbra, naso);
+		if(this.tigrato) {
+			Double strisce[][] = {
+				//strisce sinistra
+				{this.x, this.Ytesta, 0.},	//sotto
+				{this.x, this.Ytesta, 90.},	//centrale
+				{this.x, this.Ytesta, 0.},	//sopra
+				//strisce centrali
+				{this.x, this.Ytesta, 0.},	//sinistra
+				{this.x, this.Ytesta, 0.},	//centrale
+				{this.x, this.Ytesta, 0.},	//destra
+				//strisce destra
+				{this.x, this.Ytesta, 0.},	//sopra
+				{this.x, this.Ytesta, 0.},	//centrale
+				{this.x, this.Ytesta, 0.},	//sotto
+			};
+			for(int i=0; i<9; i++) {
+				root = this.drawStriscia(root, cranio, strisce[i][0], strisce[i][1], strisce[i][2]);
+			}
+		}		
 		return root;
 	}
 	private Group drawDita (Group root, Double x, Double y, Double distance) {
