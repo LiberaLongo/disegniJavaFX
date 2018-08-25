@@ -22,7 +22,7 @@ public class Gatto {
 	private Color pancia;	//=muso
 	private Color naso;	//rosa
 	private Color orecchie;	//rosa
-	private Color strisce;
+	private Color strisce;	//nere
 	//booleani
 	private Boolean bordi;		//false
 	private Boolean tigrato;	//false
