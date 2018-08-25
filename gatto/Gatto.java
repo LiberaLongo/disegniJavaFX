@@ -147,13 +147,13 @@ public class Gatto {
 		return this.Ytesta;
 	}
 	private Group drawStriscia(Group root, Shape shape, Double x, Double y, Double angle) {
-		Double base = this.size/10;
-		Double altezza = base*3;
+		Double base = this.size/8;
+		Double altezza = base*6;
 		Polygon triangolo = new Polygon();
 		triangolo.getPoints().addAll(new Double[] {
 			x, y,
-			x - base, y - altezza,
-			x + base, y - altezza,
+			x - base/2, y - altezza,
+			x + base/2, y - altezza,
 		});
 		Rotate rotate = new Rotate();
 		rotate.setAngle(angle);
@@ -262,19 +262,20 @@ public class Gatto {
 
 		root.getChildren().addAll(orecchie, orecchieInterne, cranio, occhi, pupille, mento, labbra, naso);
 		if(this.tigrato) {
+			Double distanza = this.size/6;
 			Double strisce[][] = {
 				//strisce sinistra
-				{this.x, this.Ytesta, 0.},	//sotto
-				{this.x, this.Ytesta, 90.},	//centrale
-				{this.x, this.Ytesta, 0.},	//sopra
+				{this.x - radiusXCranio*3/4,	this.Ytesta + distanza,			-110.},	//sotto
+				{this.x - radiusXCranio*5/8,	this.Ytesta,				-90.},	//centrale
+				{this.x - radiusXCranio*3/4,	this.Ytesta - distanza,			-70.},	//sopra
 				//strisce centrali
-				{this.x, this.Ytesta, 0.},	//sinistra
-				{this.x, this.Ytesta, 0.},	//centrale
-				{this.x, this.Ytesta, 0.},	//destra
+				{this.x - distanza,		this.Ytesta - radiusYCranio*3/4,	-20.},	//sinistra
+				{this.x, 			this.Ytesta - radiusYCranio/2,		0.},	//centrale
+				{this.x + distanza,		this.Ytesta - radiusYCranio*3/4,	20.},	//destra
 				//strisce destra
-				{this.x, this.Ytesta, 0.},	//sopra
-				{this.x, this.Ytesta, 0.},	//centrale
-				{this.x, this.Ytesta, 0.},	//sotto
+				{this.x + radiusXCranio*3/4,	this.Ytesta - distanza,			70.},	//sopra
+				{this.x + radiusXCranio*5/8,	this.Ytesta,				90.},	//centrale
+				{this.x + radiusXCranio*3/4,	this.Ytesta + distanza,			110.},	//sotto
 			};
 			for(int i=0; i<9; i++) {
 				root = this.drawStriscia(root, cranio, strisce[i][0], strisce[i][1], strisce[i][2]);
@@ -365,6 +366,41 @@ public class Gatto {
 		root = this.drawDita(root, this.x - distanzaGambe - radiusXGambe/2, altezzaGambe + radiusYGambe, radiusXGambe);
 			//gamba destra
 		root = this.drawDita(root, this.x + distanzaGambe - radiusXGambe/2, altezzaGambe + radiusYGambe, radiusXGambe);
+		//tigrato nelle Corpo e nelle gambe
+		if(this.tigrato) {
+			Double distanza = this.size/4;
+			
+			Double strisceGambe[][] = {
+				//gamba sinistra
+				{this.x - distanzaGambe, altezzaGambe - distanza*2, 0.},
+				{this.x - distanzaGambe, altezzaGambe - distanza*1, -30.},
+				{this.x - distanzaGambe, altezzaGambe + distanza*0, -60.},
+				{this.x - distanzaGambe, altezzaGambe + distanza*1, -90.},
+				{this.x - distanzaGambe, altezzaGambe + distanza*2, -120.},
+				//gamba destra
+				{this.x + distanzaGambe, altezzaGambe - distanza*2, 0.},
+				{this.x + distanzaGambe, altezzaGambe - distanza*1, 30.},
+				{this.x + distanzaGambe, altezzaGambe + distanza*0, 60.},
+				{this.x + distanzaGambe, altezzaGambe + distanza*1, 90.},
+				{this.x + distanzaGambe, altezzaGambe + distanza*2, 120.},
+			};
+			Double strisceCorpo[][] = {
+				//sul corpo a sinistra
+				{this.x - radiusXCorpo/2,		Ycorpo - distanza*1, -50.},
+				{this.x - radiusXCorpo/2,		Ycorpo - distanza*0, -70.},
+				//sul corpo a destra
+				{this.x + radiusXCorpo/2,		Ycorpo - distanza*1, 50.},
+				{this.x + radiusXCorpo/2,		Ycorpo - distanza*0, 70.},
+			};
+			//strisce gambe
+			for(int i=0; i<10; i++) {
+				root = this.drawStriscia(root, gambe, strisceGambe[i][0], strisceGambe[i][1], strisceGambe[i][2]);
+			}
+			//strisce corpo
+			for(int i=0; i<4; i++) {
+				root = this.drawStriscia(root, corpo, strisceCorpo[i][0], strisceCorpo[i][1], strisceCorpo[i][2]);
+			}
+		}
 		//braccia
 		root.getChildren().add(braccia);
 		//dita delle braccia
@@ -372,6 +408,40 @@ public class Gatto {
 		root = this.drawDita(root, this.x - distanzaBraccia, this.y + heightBraccia, widthBraccia);
 			//braccio destro
 		root = this.drawDita(root, this.x - widthBraccia + distanzaBraccia, this.y + heightBraccia, widthBraccia);
+		//tigrato
+		if(this.tigrato) {
+			Double distanza = heightBraccia/8;
+			Double strisceBraccia[][] = {
+				//braccio sinistro
+				{this.x + widthBraccia*3/4 - distanzaBraccia, this.y + distanza*1, -90.},
+				{this.x + widthBraccia*1/4 - distanzaBraccia, this.y + distanza*2, 90.},
+				{this.x + widthBraccia*3/4 - distanzaBraccia, this.y + distanza*3, -90.},
+				{this.x + widthBraccia*1/4 - distanzaBraccia, this.y + distanza*4, 90.},
+				{this.x + widthBraccia*3/4 - distanzaBraccia, this.y + distanza*5, -90.},
+				{this.x + widthBraccia*1/4 - distanzaBraccia, this.y + distanza*6, 90.},
+				//braccio destro
+				{this.x - widthBraccia*3/4 + distanzaBraccia, this.y + distanza*1, 90.},
+				{this.x - widthBraccia*1/4 + distanzaBraccia, this.y + distanza*2, -90.},
+				{this.x - widthBraccia*3/4 + distanzaBraccia, this.y + distanza*3, 90.},
+				{this.x - widthBraccia*1/4 + distanzaBraccia, this.y + distanza*4, -90.},
+				{this.x - widthBraccia*3/4 + distanzaBraccia, this.y + distanza*5, 90.},
+				{this.x - widthBraccia*1/4 + distanzaBraccia, this.y + distanza*6, -90.},
+			};			
+			Double strisceCorpo[][] = {
+				//sul corpo a sinistra
+				{this.x - radiusXCorpo/2 + this.size/4,	Ycorpo - this.size*7/8, -50.},
+				//sul corpo a destra
+				{this.x + radiusXCorpo/2 - this.size/4,	Ycorpo - this.size*7/8, 50.},
+			};
+			//strisce braccia
+			for(int i=0; i<12; i++) {
+				root = this.drawStriscia(root, braccia, strisceBraccia[i][0], strisceBraccia[i][1], strisceBraccia[i][2]);
+			}			
+			//strisce corpo che devono coprire parte delle braccia
+			for(int i=0; i<2; i++) {
+				root = this.drawStriscia(root, corpo, strisceCorpo[i][0], strisceCorpo[i][1], strisceCorpo[i][2]);
+			}
+		}
 		return root;
 	}
 	public Group draw (Group root) {
