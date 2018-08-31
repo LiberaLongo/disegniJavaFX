@@ -22,8 +22,8 @@ public class ksistersGatti extends Application {
 		Double spazioY = size*5+space/5;	//spazio lungo la verticale |
 		Double spazioXGatti = size*14 + space;
 		Double spazioYGatti = size*4 + space/2;
-                Double width = 1400.;
-		Double height = 800.;
+                Double width = 1300.;
+		Double height = 700.;
 		//KIRIAIR
 		Color coloriKIRIAIR[] = {
 			Color.PINK,
@@ -111,7 +111,7 @@ public class ksistersGatti extends Application {
 			{11, 0, 0, 1, 1, 0, 0,11},
 		};
 		//centro della finestra
-		Double x = width/2;
+		Double x = width/2 + width/20;
 		Double y = height/2;
 		//Disegno dei soggetti
 		Group root = new Group();
@@ -147,6 +147,7 @@ public class ksistersGatti extends Application {
 		root = KIRIAIR.draw(root);
 		//Stampa tutto
 		Scene scene = new Scene(root , width, height);
+		scene.setFill(Color.MIDNIGHTBLUE);
 		primaryStage.setTitle("Ksister fan-code by LLibera");
 		primaryStage.setScene(scene);
 		primaryStage.show();
