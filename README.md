@@ -1,4 +1,4 @@
-##disegni javafx
+## disegni javafx
 qui salvo i miei disegni fatti per imparare javafx
 
 nota: sto lavorando principalmente da terminale Ubuntu, su Windows i comandi possono cambiare
@@ -11,7 +11,7 @@ Puoi adottare due strategie:
 e dopo imparare i comandi per eserguire
 
 per aprire il terminale è necessario premere "Ctrl+Alt+T"
-###comandi per scaricare javafx da terminale
+### comandi per scaricare javafx da terminale
 premessa: in java 8 javafx dovrebbe essere già inclusa
 e per vedere la versione puoi sempre fare i comandi:
 java -version
@@ -24,6 +24,18 @@ sudo apt install openjdk-8-jdk
 sudo update-alternatives --config java
 sudo update-alternatives --config javac
 
+NOTA BENE!
+se i comandi
+sudo update-alternatives --config java
+sudo update-alternatives --config javac
+vanno a buon fine dovrebbe chiederti di inserire un numero e compare la tabella delle scelte
+in entrambi i casi quindi ne compare una quando facciamo eseguire
+sudo update-alternatives --config java
+e un'altra quando facciamo eseguire
+sudo update-alternatives --config javac
+In entrambi i casi è necessario vedere dove propone la versione di java 8
+
+
 so che potrebbe anche funzionare (ma a me non ha funzionato):
 installare java11 dal sito
 ed eseguire il comando
@@ -33,7 +45,7 @@ che dovrebbe essere la libreria di javafx
 perdonatemi ma non sono esperta di queste cose e ho dovuto risolvere parecchi casini
 se avete già eclipse con la libreria funzionante o già impostato javafx è meglio che non esegui niente di quello sopra 
 
-###comandi per scaricare la repository github
+### comandi per scaricare la repository github
 
 puoi scaricare la repository sia dallo zip
 sia tramite linea di comando
@@ -53,7 +65,7 @@ git clone "https://github.com/LiberaLongo/disegniJavaFX"
 
 verrà creata la cartella chiamata disegniJavaFX, sottocartella di PERCORSO
 
-###comandi per compilare ed eseguire
+### comandi per compilare ed eseguire
 premessa:
 compilare significa "tradurre" dal linguaggio ad alto livello (più vicino all'umano)
 nel linguaggio a basso livello (linguaggio macchina)
