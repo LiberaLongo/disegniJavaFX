@@ -14,32 +14,45 @@ per aprire il terminale è necessario premere "Ctrl+Alt+T"
 ### comandi per scaricare javafx da terminale
 premessa: in java 8 javafx dovrebbe essere già inclusa
 e per vedere la versione puoi sempre fare i comandi:
-java -version
-javac -version
+
+`java -version`
+
+`javac -version`
 
 i comandi per installare:
 
-sudo apt install default-jdk
-sudo apt install openjdk-8-jdk
-sudo update-alternatives --config java
-sudo update-alternatives --config javac
+`sudo apt install default-jdk`
+
+`sudo apt install openjdk-8-jdk`
+
+`sudo update-alternatives --config java`
+
+`sudo update-alternatives --config javac`
 
 NOTA BENE!
 se i comandi
-sudo update-alternatives --config java
-sudo update-alternatives --config javac
+`sudo update-alternatives --config java`
+
+`sudo update-alternatives --config javac`
+
 vanno a buon fine dovrebbe chiederti di inserire un numero e compare la tabella delle scelte
 in entrambi i casi quindi ne compare una quando facciamo eseguire
-sudo update-alternatives --config java
+
+`sudo update-alternatives --config java`
+
 e un'altra quando facciamo eseguire
-sudo update-alternatives --config javac
+
+`sudo update-alternatives --config javac`
+
 In entrambi i casi è necessario vedere dove propone la versione di java 8
 
 
 so che potrebbe anche funzionare (ma a me non ha funzionato):
 installare java11 dal sito
 ed eseguire il comando
-sudo apt install openjfx
+
+`sudo apt install openjfx`
+
 che dovrebbe essere la libreria di javafx
 
 perdonatemi ma non sono esperta di queste cose e ho dovuto risolvere parecchi casini
@@ -53,15 +66,15 @@ sia tramite linea di comando
 //per spostarsi nella directory dove si vuole salvare la repository
 //che indicherò con PERCORSO (esempio Scrivania/github)
 
-cd PERCORSO
+`cd PERCORSO`
 
 esempio d'uso:
 
-cd Scrivania/github
+`cd Scrivania/github`
 
 //per clonare la repository nella directory corrente
 
-git clone "https://github.com/LiberaLongo/disegniJavaFX"
+`git clone https://github.com/LiberaLongo/disegniJavaFX`
 
 verrà creata la cartella chiamata disegniJavaFX, sottocartella di PERCORSO
 
@@ -80,16 +93,24 @@ spostarsi nella directory disegniJavaFX con il comando cd
 (cd Scrivania/github/disegniJavaFX)
 
 per il file singolo chiamato NOMEFILE.java
+
 //compila
-javac NOMEFILE.java
+
+`javac NOMEFILE.java`
+
 //esegui
-java NOMEFILE
+
+`java NOMEFILE`
+
 //attenzione a NON metterci il .class per eseguirlo
 
 per il progetto chiamato NOMEPROGETTO
 //compila tutti i file presenti nel NOMEPROGETTO
-javac NOMEPROGETTO/*.java
+
+`javac NOMEPROGETTO/*.java`
+
 //esegue il file con il main chiamato MAINFILE.java
-java NOMEPROGETTO.MAINFILE.java
+
+`java NOMEPROGETTO.MAINFILE.java`
 
 spero che questa piccola guida per principianti vi sia stata utile e buon divertimento!
